@@ -67,9 +67,9 @@
             <VBox fx:id="vBox2" onMouseClicked="#emojiOnAction" prefHeight="579.0" prefWidth="400.0" />
          </content>
       </ScrollPane>
-      <AnchorPane fx:id="imogi_pane" layoutX="13.0" layoutY="410.0" opacity="0.74" prefHeight="229.0" prefWidth="188.0" style="-fx-background-color: gray; -fx-background-radius: 15;">
+      <AnchorPane fx:id="imogiPane" layoutX="13.0" layoutY="410.0" opacity="0.74" prefHeight="229.0" prefWidth="188.0" style="-fx-background-color: gray; -fx-background-radius: 15;">
          <children>
-            <GridPane layoutX="10.0" layoutY="13.0" onMouseClicked="#emo_pane_on_action" prefHeight="200.0" prefWidth="149.0">
+            <GridPane layoutX="14.0" layoutY="13.0" prefHeight="200.0" prefWidth="149.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -89,80 +89,80 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#sad" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#sunglass" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@image/emoji/ezgif-2-15e251dad3.gif" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#lot_sad" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#verySad" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <image>
                         <Image url="@image/emoji/ezgif-2-42f2e9dff8.gif" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseDragged="#money" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#sad" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
                      <image>
                         <Image url="@image/emoji/ezgif-2-4e652a75f8.gif" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#love" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#lovesmile" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
                      <image>
                         <Image url="@image/emoji/ezgif-2-1a931e9af3.gif" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#green_sad" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#cute" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
                      <image>
                         <Image url="@image/emoji/ezgif-2-80c8b54cd1.gif" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#smile_one_eyy" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#kissed" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="4">
                      <image>
-                        <Image url="@image/emoji/ezgif-2-1a931e9af3.gif" />
+                        <Image url="@image/emoji/ezgif-2-8750852c7e.gif" />
                      </image>
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#cry_yes" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="4">
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#exited" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="4">
                      <image>
                         <Image url="@image/emoji/ezgif-2-1739dcae0f.gif" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#cry_head" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#shok" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="2">
                      <image>
                         <Image url="@image/emoji/ezgif-2-6ace4e5710.gif" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#real_amile" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#emotion2" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="4">
                      <image>
                         <Image url="@image/emoji/ezgif-2-56c35d9996.gif" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#tuin" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="6">
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#ghost" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="6">
                      <image>
                         <Image url="@image/emoji/ezgif-2-fc05abb5fb.gif" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#woow" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#angry" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="6">
                      <image>
                         <Image url="@image/emoji/ezgif-2-44cce16f7f.gif" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#smile_normal" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="6">
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#smile" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="6">
                      <image>
                         <Image url="@image/emoji/ezgif-2-0472cf6031.gif" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#large_smile" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="8">
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#largesmile" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="8">
                      <image>
                         <Image url="@image/emoji/ezgif-2-df30d4e9c1.gif" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#small_smile" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#silly" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="8">
                      <image>
                         <Image url="@image/emoji/ezgif-2-dfc46071d0.gif" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#tong_smile" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="8">
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#heart" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="8">
                      <image>
                         <Image url="@image/emoji/ezgif-2-2168a6832c.gif" />
                      </image>

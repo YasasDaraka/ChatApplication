@@ -41,7 +41,7 @@ public class Client1Controller {
     String massage="";
     static String sendMassage;
     private static String userName;
-    public AnchorPane imogi_pane;
+    public AnchorPane imogiPane;
 
     public  void initialize(){
         lblName.setText (Client1logController.userName);
@@ -50,7 +50,7 @@ public class Client1Controller {
         txtMassage.setStyle("-fx-background-color: transparent; -fx-text-box-border: transparent; -fx-focus-color: transparent;");
         vBox2.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
         scrollPaneId.setStyle("-fx-background-color: transparent; -fx-background-insets: 0; -fx-padding: 0;");
-        imogi_pane.setVisible(false);
+        imogiPane.setVisible(false);
 
         new Thread (()->{
             try {
@@ -223,61 +223,100 @@ public class Client1Controller {
 
     public void emojiOnAction(MouseEvent mouseEvent) {
 
-        imogi_pane.setVisible(true);
+        imogiPane.setVisible(true);
 
     }
     public void hideEmoji(MouseEvent mouseEvent) {
-        imogi_pane.setVisible(false);
+        imogiPane.setVisible(false);
+    }
+
+    public void sunglass(MouseEvent mouseEvent) {
+        String emoji = new String(Character.toChars(128526));
+        txtMassage.setText(emoji);
+        imogiPane.setVisible(false);
+    }
+
+    public void verySad(MouseEvent mouseEvent) {
+        String emoji = new String(Character.toChars(128555));
+        txtMassage.setText(emoji);
+        imogiPane.setVisible(false);
     }
 
     public void sad(MouseEvent mouseEvent) {
-        String emoji = new String(Character.toChars(128546));
+        String emoji = new String(Character.toChars(128543));
         txtMassage.setText(emoji);
-        imogi_pane.setVisible(false);
+        imogiPane.setVisible(false);
     }
 
-    public void lot_sad(MouseEvent mouseEvent) {
+    public void lovesmile(MouseEvent mouseEvent) {
+        String emoji = new String(Character.toChars(128522));
+        txtMassage.setText(emoji);
+        imogiPane.setVisible(false);
     }
 
-    public void money(MouseEvent mouseEvent) {
+    public void cute(MouseEvent mouseEvent) {
+        String emoji = new String(Character.toChars(128525));
+        txtMassage.setText(emoji);
+        imogiPane.setVisible(false);
     }
 
-    public void love(MouseEvent mouseEvent) {
+    public void kissed(MouseEvent mouseEvent) {
+        String emoji = new String(Character.toChars(128538));
+        txtMassage.setText(emoji);
+        imogiPane.setVisible(false);
     }
 
-    public void green_sad(MouseEvent mouseEvent) {
+    public void exited(MouseEvent mouseEvent) {
+        String emoji = new String(Character.toChars(128521));
+        txtMassage.setText(emoji);
+        imogiPane.setVisible(false);
     }
 
-    public void smile_one_eyy(MouseEvent mouseEvent) {
+    public void shok(MouseEvent mouseEvent) {
+        String emoji = new String(Character.toChars(128562));
+        txtMassage.setText(emoji);
+        imogiPane.setVisible(false);
     }
 
-    public void cry_yes(MouseEvent mouseEvent) {
+    public void emotion2(MouseEvent mouseEvent) {
+        String emoji = new String(Character.toChars(128519));
+        txtMassage.setText(emoji);
+        imogiPane.setVisible(false);
     }
 
-    public void cry_head(MouseEvent mouseEvent) {
+    public void ghost(MouseEvent mouseEvent) {
+        String emoji = new String(Character.toChars(128123));
+        txtMassage.setText(emoji);
+        imogiPane.setVisible(false);
     }
 
-    public void real_amile(MouseEvent mouseEvent) {
+    public void angry(MouseEvent mouseEvent) {
+        String emoji = new String(Character.toChars(128544));
+        txtMassage.setText(emoji);
+        imogiPane.setVisible(false);
     }
 
-    public void tuin(MouseEvent mouseEvent) {
+    public void smile(MouseEvent mouseEvent) {
+        String emoji = new String(Character.toChars(128514));
+        txtMassage.setText(emoji);
+        imogiPane.setVisible(false);
     }
 
-    public void woow(MouseEvent mouseEvent) {
+    public void largesmile(MouseEvent mouseEvent) {
+        String emoji = new String(Character.toChars(128513));
+        txtMassage.setText(emoji);
+        imogiPane.setVisible(false);
     }
 
-    public void smile_normal(MouseEvent mouseEvent) {
+    public void silly(MouseEvent mouseEvent) {
+        String emoji = new String(Character.toChars(128540));
+        txtMassage.setText(emoji);
+        imogiPane.setVisible(false);
     }
 
-    public void large_smile(MouseEvent mouseEvent) {
-    }
-
-    public void small_smile(MouseEvent mouseEvent) {
-    }
-
-    public void tong_smile(MouseEvent mouseEvent) {
-    }
-
-    public void emo_pane_on_action(MouseEvent mouseEvent) {
+    public void heart(MouseEvent mouseEvent) {
+        String emoji = new String(Character.toChars(128150));
+        txtMassage.setText(emoji);
+        imogiPane.setVisible(false);
     }
 }
