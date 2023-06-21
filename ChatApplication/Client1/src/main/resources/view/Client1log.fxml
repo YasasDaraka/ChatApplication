@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="625.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client1logController">
+<AnchorPane fx:id="ancherpane" prefHeight="625.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Client1logController">
    <children>
       <Pane layoutX="72.0" layoutY="491.0" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #044544; -fx-background-radius: 500;">
          <children>
@@ -35,7 +35,10 @@
       </Pane>
       <Pane layoutX="54.0" layoutY="424.0" opacity="0.8" prefHeight="40.0" prefWidth="297.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30;">
          <children>
-            <TextField fx:id="txtUserName" layoutX="21.0" layoutY="10.0" prefHeight="19.0" prefWidth="259.0" />
+            <TextField fx:id="txtUserName" layoutX="21.0" layoutY="5.0" prefHeight="22.0" prefWidth="259.0">
+               <font>
+                  <Font size="15.0" />
+               </font></TextField>
          </children></Pane>
       <Label layoutX="145.0" layoutY="220.0" prefHeight="36.0" prefWidth="118.0" text="ChatMe" textFill="#69946d">
          <font>
