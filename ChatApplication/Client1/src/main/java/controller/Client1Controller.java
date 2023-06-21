@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -40,6 +41,8 @@ public class Client1Controller {
     String massage="";
     static String sendMassage;
     private static String userName;
+    public AnchorPane imogi_pane;
+
     public  void initialize(){
         lblName.setText (Client1logController.userName);
         scrollPaneId.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
@@ -47,7 +50,7 @@ public class Client1Controller {
         txtMassage.setStyle("-fx-background-color: transparent; -fx-text-box-border: transparent; -fx-focus-color: transparent;");
         vBox2.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
         scrollPaneId.setStyle("-fx-background-color: transparent; -fx-background-insets: 0; -fx-padding: 0;");
-
+        imogi_pane.setVisible(false);
 
         new Thread (()->{
             try {
@@ -217,7 +220,20 @@ public class Client1Controller {
 
     }
 
+
+    public void emojiOnAction(MouseEvent mouseEvent) {
+
+        imogi_pane.setVisible(true);
+
+    }
+    public void hideEmoji(MouseEvent mouseEvent) {
+        imogi_pane.setVisible(false);
+    }
+
     public void sad(MouseEvent mouseEvent) {
+        String emoji = new String(Character.toChars(128546));
+        txtMassage.setText(emoji);
+        imogi_pane.setVisible(false);
     }
 
     public void lot_sad(MouseEvent mouseEvent) {

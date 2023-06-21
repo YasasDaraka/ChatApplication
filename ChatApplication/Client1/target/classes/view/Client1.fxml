@@ -47,11 +47,11 @@
                   <Image url="@image/cam.png" />
                </image>
             </ImageView>
-            <TextField fx:id="txtMassage" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="41.0" layoutY="3.0" prefHeight="17.0" prefWidth="256.0" scaleShape="false">
+            <TextField fx:id="txtMassage" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="41.0" layoutY="3.0" onMouseClicked="#hideEmoji" prefHeight="17.0" prefWidth="256.0" scaleShape="false">
                <font>
                   <Font size="15.0" />
                </font></TextField>
-            <ImageView fitHeight="26.0" fitWidth="29.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="26.0" fitWidth="29.0" layoutX="8.0" layoutY="7.0" onMouseClicked="#emojiOnAction" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@image/smiling-face.gif" />
                </image></ImageView>
@@ -64,7 +64,7 @@
       </ImageView>
       <ScrollPane fx:id="scrollPaneId" layoutX="-1.0" layoutY="51.0" prefHeight="579.0" prefWidth="400.0">
          <content>
-            <VBox fx:id="vBox2" prefHeight="579.0" prefWidth="400.0" />
+            <VBox fx:id="vBox2" onMouseClicked="#emojiOnAction" prefHeight="579.0" prefWidth="400.0" />
          </content>
       </ScrollPane>
       <AnchorPane fx:id="imogi_pane" layoutX="13.0" layoutY="410.0" opacity="0.74" prefHeight="229.0" prefWidth="188.0" style="-fx-background-color: gray; -fx-background-radius: 15;">
@@ -159,7 +159,7 @@
                   </ImageView>
                   <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#small_smile" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="8">
                      <image>
-                        <Image url="@image/emoji/ezgif-2-1a931e9af3.gif" />
+                        <Image url="@image/emoji/ezgif-2-dfc46071d0.gif" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#tong_smile" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="8">
