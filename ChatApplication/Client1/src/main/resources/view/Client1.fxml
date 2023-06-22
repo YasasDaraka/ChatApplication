@@ -42,9 +42,9 @@
       </Pane>
       <Pane layoutX="13.0" layoutY="645.0" opacity="0.8" prefHeight="40.0" prefWidth="337.0" style="-fx-background-radius: 30; -fx-background-color: #FFFFFF;">
          <children>
-            <ImageView fitHeight="19.0" fitWidth="28.0" layoutX="305.0" layoutY="10.0" onMouseClicked="#onActionImageSend" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="34.0" fitWidth="29.0" layoutX="301.0" layoutY="5.0" onMouseClicked="#onActionImageSend" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@image/cam.png" />
+                  <Image url="@image/icons8-camera.gif" />
                </image>
             </ImageView>
             <TextField fx:id="txtMassage" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="76.0" layoutY="3.0" onMouseClicked="#hideEmoji" prefHeight="20.0" prefWidth="219.0" scaleShape="false">
@@ -270,7 +270,7 @@
                         <Image url="@gif/ezgif-2-dfc46071d0.gif" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#emotion2" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="8">
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#gifemotion2" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="8">
                      <image>
                         <Image url="@gif/ezgif-2-80c8b54cd1.gif" />
                      </image>
