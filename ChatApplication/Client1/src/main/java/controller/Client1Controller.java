@@ -15,7 +15,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -30,6 +33,10 @@ public class Client1Controller {
     public Label lblName;
     public VBox vBox2;
     public ScrollPane scrollPaneId;
+    public Pane darkimagePane;
+    public ImageView darkImage;
+    public ImageView lightImageview;
+    public ImageView theamChange;
     DataOutputStream dataOutputStream;
     DataInputStream dataInputStream;
     Socket socket;
@@ -47,6 +54,7 @@ public class Client1Controller {
         scrollPaneId.setStyle("-fx-background-color: transparent; -fx-background-insets: 0; -fx-padding: 0;");
         imogiPane.setVisible(false);
         gifPAne.setVisible(false);
+        lightImageview.setVisible(false);
         Platform.runLater(() -> {
             scrollPaneId.lookup(".viewport").setStyle("-fx-background-color: transparent;");
             scrollPaneId.lookup(".scroll-bar").setStyle("-fx-background-color: transparent;");
@@ -77,7 +85,9 @@ public class Client1Controller {
             }
         }).start();
     }
-
+    public void exist(MouseEvent mouseEvent) throws IOException {
+        System.exit(0);
+    }
     private void setImage(String massage) {
         Platform.runLater(() -> {
 
@@ -142,31 +152,35 @@ public class Client1Controller {
         sendMassage = txtMassage.getText();
         Platform.runLater(() -> {
 
-            Label text = new Label();
-            text.setStyle("-fx-background-radius: 10;" +
+            TextFlow tempFlow = new TextFlow();
+            Text txtName = new Text();
+            tempFlow.setStyle("-fx-background-radius: 10;" +
                     "-fx-background-color: rgba(0, 201, 167, 0.85);" +
                     "-fx-font-family: \"Arial Rounded MT Bold\";" +
                     "-fx-font-size: 15; -fx-padding: 8; -fx-start-margin: 200 ;" +
                     "-fx-text-fill:  #fff;");
 
+            txtName.setStyle("-fx-fill: #fff;");
+            txtName.setText(sendMassage);
+            tempFlow.getChildren().add(txtName);
+            tempFlow.setPadding(new Insets(3, 10, 3, 10));
 
-            text.setText(" " + sendMassage + " ");
             final Group root = new Group();
-
             final GridPane gridPane = new GridPane();
             gridPane.setPadding(new Insets(5));
             gridPane.setHgap(10);
             gridPane.setVgap(10);
             gridPane.minHeight(30);
-            text.maxHeight(200);
+            txtName.maxHeight(200);
             gridPane.maxHeight(200);
 
-            GridPane.setHalignment(text, HPos.CENTER);
-            gridPane.add(text, 0, 0);
+            GridPane.setHalignment(tempFlow, HPos.CENTER);
+            gridPane.add(tempFlow, 0, 0);
             gridPane.setAlignment(Pos.CENTER_RIGHT);
 
             root.getChildren().add(gridPane);
             vBox2.getChildren().add(gridPane);
+
         });
 
         dataOutputStream.writeUTF(txtMassage.getText());
@@ -456,4 +470,28 @@ public class Client1Controller {
         }
     }
 
+    public void lightOnAction(MouseEvent mouseEvent) {
+        String imagePath = "D:\\Chat\\ChatApplication\\Client1\\src\\main\\resources\\view\\image\\background.jpg";
+        changeImageFromPath(theamChange, imagePath);
+        darkimagePane.setVisible(true);
+        darkImage.setVisible(true);
+        lightImageview.setVisible(false);
+    }
+
+    public void darkOnAction(MouseEvent mouseEvent) {
+        String imagePath = "D:\\Chat\\ChatApplication\\Client1\\src\\main\\resources\\view\\image\\dark.png";
+        changeImageFromPath(theamChange, imagePath);
+        darkimagePane.setVisible(false);
+        darkImage.setVisible(false);
+        lightImageview.setVisible(true);
+    }
+    public void changeImageFromPath(ImageView imageView, String imagePath) {
+        try {
+            Image image = new Image(new File(imagePath).toURI().toString());
+            imageView.setImage(image);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+
+        }
+    }
 }

@@ -16,7 +16,7 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Client1Controller">
    <children>
-      <ImageView fitHeight="700.0" fitWidth="417.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="theamChange" fitHeight="700.0" fitWidth="417.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@image/background.jpg" />
          </image>
@@ -33,11 +33,24 @@
                   <Image url="@image/user.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="17.0" fitWidth="11.0" layoutX="10.0" layoutY="17.0" opacity="0.82" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="17.0" fitWidth="11.0" layoutX="10.0" layoutY="17.0" onMouseClicked="#exist" opacity="0.82" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@image/arrow.png" />
                </image>
             </ImageView>
+            <ImageView fx:id="lightImageview" fitHeight="26.0" fitWidth="27.0" layoutX="363.0" layoutY="12.0" onMouseClicked="#lightOnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/sun.png" />
+               </image>
+            </ImageView>
+            <Pane fx:id="darkimagePane" layoutX="363.0" layoutY="13.0" opacity="0.85" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 500;">
+               <children>
+                  <ImageView fx:id="darkImage" fitHeight="24.0" fitWidth="22.0" layoutX="2.0" layoutY="2.0" onMouseClicked="#darkOnAction" opacity="0.9" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/output-onlinegiftools.gif" />
+                     </image></ImageView>
+               </children>
+            </Pane>
          </children>
       </Pane>
       <Pane layoutX="13.0" layoutY="645.0" opacity="0.8" prefHeight="40.0" prefWidth="337.0" style="-fx-background-radius: 30; -fx-background-color: #FFFFFF;">
@@ -49,7 +62,7 @@
             </ImageView>
             <TextField fx:id="txtMassage" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="76.0" layoutY="3.0" onMouseClicked="#hideEmoji" prefHeight="20.0" prefWidth="219.0" scaleShape="false">
                <font>
-                  <Font size="15.0" />
+                  <Font name="Arial Rounded MT Bold" size="15.0" />
                </font></TextField>
             <ImageView fitHeight="26.0" fitWidth="29.0" layoutX="8.0" layoutY="7.0" onMouseClicked="#emojiOnAction" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -68,7 +81,7 @@
       </ImageView>
       <ScrollPane fx:id="scrollPaneId" layoutX="-1.0" layoutY="51.0" prefHeight="579.0" prefWidth="400.0">
          <content>
-            <VBox fx:id="vBox2" onMouseClicked="#emojiOnAction" prefHeight="579.0" prefWidth="400.0" />
+            <VBox fx:id="vBox2" prefHeight="579.0" prefWidth="400.0" />
          </content>
       </ScrollPane>
       <AnchorPane fx:id="imogiPane" layoutX="13.0" layoutY="410.0" opacity="0.74" prefHeight="229.0" prefWidth="188.0" style="-fx-background-color: gray; -fx-background-radius: 15;">
