@@ -16,55 +16,72 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Client2Controller">
    <children>
-      <ImageView fitHeight="700.0" fitWidth="417.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="theamChange" fitHeight="700.0" fitWidth="417.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@image/background.jpg" />
          </image>
       </ImageView>
       <Pane opacity="0.9" prefHeight="51.0" prefWidth="400.0" style="-fx-background-color: #044544;">
          <children>
-            <Label fx:id="lblName" layoutX="77.0" layoutY="13.0" prefHeight="23.0" prefWidth="151.0" textFill="#ffffffe5">
+            <Label fx:id="lblName" layoutX="67.0" layoutY="12.0" prefHeight="23.0" prefWidth="151.0" textFill="#ffffffe5">
                <font>
                   <Font name="Arial Rounded MT Bold" size="18.0" />
                </font>
             </Label>
-            <ImageView fitHeight="33.0" fitWidth="34.0" layoutX="31.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="26.0" fitWidth="28.0" layoutX="30.0" layoutY="12.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@image/user.png" />
+                  <Image url="@image/use.gif" />
                </image>
             </ImageView>
-            <ImageView fitHeight="17.0" fitWidth="11.0" layoutX="10.0" layoutY="17.0" opacity="0.82" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="17.0" fitWidth="11.0" layoutX="10.0" layoutY="17.0" onMouseClicked="#exist" opacity="0.82" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@image/arrow.png" />
                </image>
             </ImageView>
+            <ImageView fx:id="lightImageview" fitHeight="26.0" fitWidth="27.0" layoutX="363.0" layoutY="12.0" onMouseClicked="#lightOnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/sun.png" />
+               </image>
+            </ImageView>
+            <Pane fx:id="darkimagePane" layoutX="363.0" layoutY="13.0" opacity="0.85" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 500;">
+               <children>
+                  <ImageView fx:id="darkImage" fitHeight="24.0" fitWidth="22.0" layoutX="2.0" layoutY="2.0" onMouseClicked="#darkOnAction" opacity="0.9" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/output-onlinegiftools.gif" />
+                     </image></ImageView>
+               </children>
+            </Pane>
          </children>
       </Pane>
       <Pane layoutX="13.0" layoutY="645.0" opacity="0.8" prefHeight="40.0" prefWidth="337.0" style="-fx-background-radius: 30; -fx-background-color: #FFFFFF;">
          <children>
-            <ImageView fitHeight="19.0" fitWidth="28.0" layoutX="305.0" layoutY="10.0" onMouseClicked="#onActionImageSend" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="34.0" fitWidth="29.0" layoutX="301.0" layoutY="5.0" onMouseClicked="#onActionImageSend" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@image/cam.png" />
+                  <Image url="@image/icons8-camera.gif" />
                </image>
             </ImageView>
-            <TextField fx:id="txtMassage" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="41.0" layoutY="3.0" onMouseClicked="#hideEmoji" prefHeight="17.0" prefWidth="256.0" scaleShape="false">
+            <TextField fx:id="txtMassage" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="76.0" layoutY="6.0" onKeyTyped="#keyTyping" onMouseClicked="#hideEmoji" prefHeight="20.0" prefWidth="219.0" scaleShape="false">
                <font>
-                  <Font size="15.0" />
+                  <Font name="Arial Rounded MT Bold" size="15.0" />
                </font></TextField>
             <ImageView fitHeight="26.0" fitWidth="29.0" layoutX="8.0" layoutY="7.0" onMouseClicked="#emojiOnAction" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@image/smiling-face.gif" />
                </image></ImageView>
+            <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="40.0" layoutY="7.0" onMouseClicked="#gifOnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/media.gif" />
+               </image></ImageView>
          </children>
       </Pane>
-      <ImageView fitHeight="32.0" fitWidth="35.0" layoutX="357.0" layoutY="649.0" onMouseClicked="#onActionSendMassage" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="sendBtn" fitHeight="32.0" fitWidth="35.0" layoutX="357.0" layoutY="649.0" onMouseClicked="#onActionSendMassage" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@image/Send.png" />
          </image>
       </ImageView>
       <ScrollPane fx:id="scrollPaneId" layoutX="-1.0" layoutY="51.0" prefHeight="579.0" prefWidth="400.0">
          <content>
-            <VBox fx:id="vBox2" onMouseClicked="#emojiOnAction" prefHeight="579.0" prefWidth="400.0" />
+            <VBox fx:id="vBox2" prefHeight="579.0" prefWidth="400.0" />
          </content>
       </ScrollPane>
       <AnchorPane fx:id="imogiPane" layoutX="13.0" layoutY="410.0" opacity="0.74" prefHeight="229.0" prefWidth="188.0" style="-fx-background-color: gray; -fx-background-radius: 15;">
@@ -165,6 +182,110 @@
                   <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#heart" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="8">
                      <image>
                         <Image url="@image/emoji/ezgif-2-2168a6832c.gif" />
+                     </image>
+                  </ImageView>
+               </children>
+            </GridPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="gifPAne" layoutX="13.0" layoutY="411.0" opacity="0.74" prefHeight="229.0" prefWidth="188.0" style="-fx-background-color: gray; -fx-background-radius: 15;">
+         <children>
+            <GridPane layoutX="14.0" layoutY="13.0" prefHeight="200.0" prefWidth="149.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#smileHeart2" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@gif/ezgif-2-1a931e9af3.gif" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#smile2" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <image>
+                        <Image url="@gif/ezgif-2-56c35d999.gif" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#sad2" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+                     <image>
+                        <Image url="@gif/ezgif-2-4e652a75f8.gif" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#sunglass2" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
+                     <image>
+                        <Image url="@gif/ezgif-2-15e251dad3.gif" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#shok2" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                     <image>
+                        <Image url="@gif/ezgif-2-6ace4e5710.gif" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#angry2" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                     <image>
+                        <Image url="@gif/ezgif-2-44cce16f7f.gif" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#emostional2" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="4">
+                     <image>
+                        <Image url="@gif/ezgif-2-56c35d9996.gif" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#verysad2" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                     <image>
+                        <Image url="@gif/ezgif-2-42f2e9dff8.gif" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#heart2" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                     <image>
+                        <Image url="@gif/ezgif-2-2168a6832c.gif" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#laugh2" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="6">
+                     <image>
+                        <Image url="@gif/ezgif-2-0472cf6031.gif" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#exited2" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                     <image>
+                        <Image url="@gif/ezgif-2-1739dcae0f.gif" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#gost2" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="6">
+                     <image>
+                        <Image url="@gif/ezgif-2-fc05abb5fb.gif" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#kiss2" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="8">
+                     <image>
+                        <Image url="@gif/ezgif-2-8750852c7e.gif" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#silly2" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                     <image>
+                        <Image url="@gif/ezgif-2-dfc46071d0.gif" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#gifemotion2" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="8">
+                     <image>
+                        <Image url="@gif/ezgif-2-80c8b54cd1.gif" />
                      </image>
                   </ImageView>
                </children>

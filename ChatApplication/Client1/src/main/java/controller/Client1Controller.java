@@ -12,6 +12,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -37,6 +38,7 @@ public class Client1Controller {
     public ImageView darkImage;
     public ImageView lightImageview;
     public ImageView theamChange;
+    public ImageView sendBtn;
     DataOutputStream dataOutputStream;
     DataInputStream dataInputStream;
     Socket socket;
@@ -55,6 +57,12 @@ public class Client1Controller {
         imogiPane.setVisible(false);
         gifPAne.setVisible(false);
         lightImageview.setVisible(false);
+        sendBtn.setVisible(false);
+        txtMassage.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.isEmpty()) {
+                sendBtn.setVisible(true);
+            }
+        });
         Platform.runLater(() -> {
             scrollPaneId.lookup(".viewport").setStyle("-fx-background-color: transparent;");
             scrollPaneId.lookup(".scroll-bar").setStyle("-fx-background-color: transparent;");
@@ -114,25 +122,32 @@ public class Client1Controller {
 
     private void setMessage(String massage) {
         Platform.runLater(() -> {
+            TextFlow tempFlow = new TextFlow();
+            Text txtName = new Text();
+            tempFlow.setStyle("-fx-background-radius: 10;" +
+                    "-fx-background-color: rgba(113, 144, 224, 0.85);" +
+                    "-fx-font-family: \"Arial Rounded MT Bold\";" +
+                    "-fx-font-size: 15px; -fx-padding: 8px; -fx-start-margin: 200px;" +
+                    "-fx-text-fill:  #ffffff;");
 
-            Label text = new Label();
-            text.setStyle("    -fx-background-radius: 20;" +
-                    "    -fx-background-color: #7190e0;\n" +
-                    "    -fx-font-family: \"fantasy\";\n" +
-                    "    -fx-font-size: 12; -fx-padding: 8; -fx-start-margin: 200 ; -fx-text-fill: #fff");
-            text.setText(" " + massage + " ");
-            text.setMinWidth(200);
+            txtName.setStyle("-fx-fill: #fff;");
+            txtName.setText(massage);
+            tempFlow.getChildren().add(txtName);
+            tempFlow.setPadding(new Insets(3, 10, 3, 10));
+
             final Group root = new Group();
             final GridPane gridPane = new GridPane();
             gridPane.setPadding(new Insets(5));
             gridPane.setHgap(10);
             gridPane.setVgap(10);
             gridPane.minHeight(30);
-            text.maxHeight(200);
+            txtName.maxHeight(200);
             gridPane.maxHeight(200);
-            GridPane.setHalignment(text, HPos.CENTER);
-            gridPane.add(text, 0, 0);
+
+            GridPane.setHalignment(tempFlow, HPos.CENTER);
+            gridPane.add(tempFlow, 0, 0);
             gridPane.setAlignment(Pos.CENTER_LEFT);
+
             root.getChildren().add(gridPane);
             vBox2.getChildren().add(gridPane);
 
@@ -492,6 +507,16 @@ public class Client1Controller {
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
 
+        }
+    }
+
+    public void keyTyping(KeyEvent keyEvent) {
+        String text = txtMassage.getText();
+        if (!text.isBlank()) {
+            sendBtn.setVisible(true);
+
+        }else{
+            sendBtn.setVisible(false);
         }
     }
 }

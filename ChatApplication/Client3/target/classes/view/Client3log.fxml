@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="ancherpane" prefHeight="625.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Client3logController">
+   <children>
+      <Pane layoutX="72.0" layoutY="491.0" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #044544; -fx-background-radius: 500;">
+         <children>
+            <Label layoutX="19.0" layoutY="-6.0" prefHeight="36.0" prefWidth="68.0" text="Log in" textFill="#69946d">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <ImageView fitHeight="625.0" fitWidth="400.0" pickOnBounds="true">
+         <image>
+            <Image url="@image/background.jpg" />
+         </image>
+      </ImageView>
+      <Pane layoutX="137.0" layoutY="87.0" prefHeight="127.0" prefWidth="127.0" style="-fx-background-radius: 500; -fx-background-color: #FFFFFF;">
+         <children>
+            <ImageView fitHeight="115.0" fitWidth="118.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/chat2.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="54.0" layoutY="424.0" opacity="0.8" prefHeight="40.0" prefWidth="297.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30;">
+         <children>
+            <TextField fx:id="txtUserName" layoutX="21.0" layoutY="6.0" prefHeight="22.0" prefWidth="259.0">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="15.0" />
+               </font></TextField>
+         </children></Pane>
+      <Label layoutX="145.0" layoutY="220.0" prefHeight="36.0" prefWidth="118.0" text="ChatMe" textFill="#69946d">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="30.0" />
+         </font>
+      </Label>
+      <Pane layoutX="163.0" layoutY="497.0" opacity="0.67" prefHeight="27.0" prefWidth="80.0" style="-fx-background-color: #044544; -fx-background-radius: 500;">
+         <children>
+            <Label layoutX="14.0" layoutY="-6.0" onMouseClicked="#loginOnAction" prefHeight="36.0" prefWidth="68.0" text="Log in" textFill="#edf2ed">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

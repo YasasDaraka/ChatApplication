@@ -35,7 +35,7 @@
       </Pane>
       <Pane layoutX="54.0" layoutY="424.0" opacity="0.8" prefHeight="40.0" prefWidth="297.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30;">
          <children>
-            <TextField fx:id="txtUserName" layoutX="21.0" layoutY="5.0" prefHeight="22.0" prefWidth="259.0">
+            <TextField fx:id="txtUserName" layoutX="21.0" layoutY="6.0" prefHeight="22.0" prefWidth="259.0">
                <font>
                   <Font name="Arial Rounded MT Bold" size="15.0" />
                </font></TextField>

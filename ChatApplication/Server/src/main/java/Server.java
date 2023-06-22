@@ -29,9 +29,6 @@ public class Server {
         } catch (Exception e) {
             e.printStackTrace ();
 
-
-
-
         }
     }
     public static void broadcastMessage(String message,String name) {

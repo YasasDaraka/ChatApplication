@@ -1,21 +1,23 @@
 package controller;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -26,205 +28,189 @@ import java.io.IOException;
 import java.net.Socket;
 
 public class Client2Controller {
-    public TextField client1Name;
     public TextField txtMassage;
     public Label lblName;
     public VBox vBox2;
     public ScrollPane scrollPaneId;
+    public Pane darkimagePane;
+    public ImageView darkImage;
+    public ImageView lightImageview;
+    public ImageView theamChange;
+    public ImageView sendBtn;
     DataOutputStream dataOutputStream;
     DataInputStream dataInputStream;
     Socket socket;
-    final int port=8000;
-    String massage="";
+    String massage = "";
     static String sendMassage;
-    private static String userName;
     public AnchorPane imogiPane;
+    public AnchorPane gifPAne;
 
-    public  void initialize(){
-        lblName.setText (Client2logController.userName);
+    public void initialize() {
+        lblName.setText(Client2logController.userName);
         scrollPaneId.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPaneId.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         txtMassage.setStyle("-fx-background-color: transparent; -fx-text-box-border: transparent; -fx-focus-color: transparent;");
         vBox2.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
         scrollPaneId.setStyle("-fx-background-color: transparent; -fx-background-insets: 0; -fx-padding: 0;");
         imogiPane.setVisible(false);
+        gifPAne.setVisible(false);
+        lightImageview.setVisible(false);
+        sendBtn.setVisible(false);
+        txtMassage.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.isEmpty()) {
+                sendBtn.setVisible(true);
+            }
+        });
+        Platform.runLater(() -> {
+            scrollPaneId.lookup(".viewport").setStyle("-fx-background-color: transparent;");
+            scrollPaneId.lookup(".scroll-bar").setStyle("-fx-background-color: transparent;");
+            scrollPaneId.lookup(".scroll-bar:vertical").setStyle("-fx-background-color: transparent;");
 
-        new Thread (()->{
+        });
+        new Thread(() -> {
             try {
-
-                socket=new Socket ("localhost",8007);
-                dataOutputStream=new DataOutputStream (socket.getOutputStream ());
-                dataInputStream=new DataInputStream (socket.getInputStream ());
-
-
+                socket = new Socket("localhost", 3008);
+                dataOutputStream = new DataOutputStream(socket.getOutputStream());
+                dataInputStream = new DataInputStream(socket.getInputStream());
                 dataOutputStream.writeUTF(Client2logController.userName);
                 dataOutputStream.flush();
 
-                while(!massage.equals ("finished")){
-                    massage=dataInputStream.readUTF ();
+                while (socket.isConnected()) {
+                    massage = dataInputStream.readUTF();
 
-                    if (massage.startsWith ("img")){
+                    if (massage.startsWith("img")) {
 
                         setImage(massage);
 
-                    }else {
+                    } else {
                         setMessage(massage);
                     }
-
                 }
-
-
             } catch (Exception e) {
-                e.printStackTrace ();
+                e.printStackTrace();
             }
-
-
-        }).start ();
+        }).start();
+    }
+    public void exist(MouseEvent mouseEvent) throws IOException {
+        System.exit(0);
     }
     private void setImage(String massage) {
-        Platform.runLater (() ->{
+        Platform.runLater(() -> {
 
-            String[] paths = massage.split ("`");
-            System.out.println (paths[1]);
+            String[] paths = massage.split("`");
+            Image image1 = new Image(paths[1], 100, 300, true, true);
+            ImageView image = new ImageView(image1);
+            final Group root = new Group();
+            final GridPane gridpane = new GridPane();
+            gridpane.setPadding(new Insets(5));
+            gridpane.setHgap(10);
+            gridpane.setVgap(10);
+            gridpane.minHeight(30);
+            gridpane.maxHeight(200);
+            GridPane.setHalignment(image, HPos.CENTER);
+            gridpane.add(image, 0, 0);
+            gridpane.setAlignment(Pos.CENTER_LEFT);
 
-            Image image1 = new Image (paths[1], 100, 300, true, true);
-            ImageView image = new ImageView (image1);
-            final Group root = new Group ();
+            root.getChildren().add(gridpane);
 
-            final GridPane gridpane = new GridPane ();
-            gridpane.setPadding (new Insets(5));
-            gridpane.setHgap (10);
-            gridpane.setVgap (10);
-            gridpane.minHeight (30);
-            gridpane.maxHeight (200);
-
-
-            GridPane.setHalignment (image, HPos.CENTER);
-            gridpane.add (image, 0, 0);
-            gridpane.setAlignment (Pos.CENTER_LEFT);
-
-            root.getChildren ().add (gridpane);
-
-            vBox2.getChildren ().add (gridpane);
+            vBox2.getChildren().add(gridpane);
 
         });
     }
+
     private void setMessage(String massage) {
-        Platform.runLater (()->{
+        Platform.runLater(() -> {
+            TextFlow tempFlow = new TextFlow();
+            Text txtName = new Text();
+            tempFlow.setStyle("-fx-background-radius: 10;" +
+                    "-fx-background-color: rgba(113, 144, 224, 0.85);" +
+                    "-fx-font-family: \"Arial Rounded MT Bold\";" +
+                    "-fx-font-size: 15px; -fx-padding: 8px; -fx-start-margin: 200px;" +
+                    "-fx-text-fill:  #ffffff;");
 
-            Label text = new Label ();
-            text.setStyle("    -fx-background-radius: 20;"+
-                    "    -fx-background-color: #7190e0;\n" +
-                    "    -fx-font-family: \"fantasy\";\n" +
-                    "    -fx-font-size: 12; -fx-padding: 8; -fx-start-margin: 200 ; -fx-text-fill: #fff");
-            text.setText (" " + massage + " ");
-            text.setMinWidth (200);
-            final Group root = new Group ();
+            txtName.setStyle("-fx-fill: #fff;");
+            txtName.setText(massage);
+            tempFlow.getChildren().add(txtName);
+            tempFlow.setPadding(new Insets(3, 10, 3, 10));
 
-            final GridPane gridPane = new GridPane ();
-            gridPane.setPadding (new Insets (5));
-            gridPane.setHgap (10);
-            gridPane.setVgap (10);
-            gridPane.minHeight (30);
-            text.maxHeight (200);
-            gridPane.maxHeight (200);
+            final Group root = new Group();
+            final GridPane gridPane = new GridPane();
+            gridPane.setPadding(new Insets(5));
+            gridPane.setHgap(10);
+            gridPane.setVgap(10);
+            gridPane.minHeight(30);
+            txtName.maxHeight(200);
+            gridPane.maxHeight(200);
 
-            GridPane.setHalignment (text, HPos.CENTER);
-            gridPane.add (text, 0, 0);
-            gridPane.setAlignment (Pos.CENTER_LEFT);
+            GridPane.setHalignment(tempFlow, HPos.CENTER);
+            gridPane.add(tempFlow, 0, 0);
+            gridPane.setAlignment(Pos.CENTER_LEFT);
 
-            root.getChildren ().add(gridPane);
-            vBox2.getChildren ().add(gridPane);
+            root.getChildren().add(gridPane);
+            vBox2.getChildren().add(gridPane);
 
         });
 
-
-    }
-    public void onActionNameSave(ActionEvent actionEvent) throws IOException {
-        dataOutputStream.writeUTF(client1Name.getText ());
-        dataOutputStream.flush();
-        client1Name.clear ();
     }
     public void onActionImageSend(MouseEvent mouseEvent) throws IOException {
-        FileChooser chooser = new FileChooser ();
-        File file = chooser.showOpenDialog (new Stage());
+        FileChooser chooser = new FileChooser();
+        File file = chooser.showOpenDialog(new Stage());
         if (file != null) {
-
-            String path = file.toURI ().toString ();
-            System.out.println (path);
-
-            System.out.println (file.getPath ());
-            Image image1 = new Image (path, 100, 300, true, true);
-            ImageView image = new ImageView (image1);
-            final Group root = new Group ();
-
-            final GridPane gridpane = new GridPane ();
-            gridpane.setPadding (new Insets (5));
-            gridpane.setHgap (10);
-            gridpane.setVgap (10);
-            gridpane.minHeight (30);
-            gridpane.maxHeight (200);
-
-
-            GridPane.setHalignment (image, HPos.CENTER);
-            gridpane.add (image, 0, 0);
-            gridpane.setAlignment (Pos.CENTER_RIGHT);
-
-            root.getChildren ().add (gridpane);
-
-            vBox2.getChildren ().add (gridpane);
-
-
-            dataOutputStream.writeUTF ("img`" + path);
-            dataOutputStream.flush ();
+            String path = file.toURI().toString();
+            sendImage(path);
         }
     }
 
     public void onActionSendMassage(MouseEvent mouseEvent) throws IOException {
-        sendMassage=txtMassage.getText ();
+        sendMassage = txtMassage.getText();
+        Platform.runLater(() -> {
 
-        Platform.runLater (()->{
+            TextFlow tempFlow = new TextFlow();
+            Text txtName = new Text();
+            tempFlow.setStyle("-fx-background-radius: 10;" +
+                    "-fx-background-color: rgba(0, 201, 167, 0.85);" +
+                    "-fx-font-family: \"Arial Rounded MT Bold\";" +
+                    "-fx-font-size: 15; -fx-padding: 8; -fx-start-margin: 200 ;" +
+                    "-fx-text-fill:  #fff;");
 
-            Label text = new Label ();
-            text.setStyle("     -fx-background-radius: 20;"+
-                    "    -fx-background-color: #7190e0;\n" +
-                    "    -fx-font-family: \"fantasy\";\n" +
-                    "    -fx-font-size: 12; -fx-padding: 8; -fx-start-margin: 200 ; -fx-text-fill: #fff");
-            text.setText (" " + sendMassage + " ");
-            final Group root = new Group ();
+            txtName.setStyle("-fx-fill: #fff;");
+            txtName.setText(sendMassage);
+            tempFlow.getChildren().add(txtName);
+            tempFlow.setPadding(new Insets(3, 10, 3, 10));
 
-            final GridPane gridPane = new GridPane ();
-            gridPane.setPadding (new Insets(5));
-            gridPane.setHgap (10);
-            gridPane.setVgap (10);
-            gridPane.minHeight (30);
-            text.maxHeight (200);
-            gridPane.maxHeight (200);
+            final Group root = new Group();
+            final GridPane gridPane = new GridPane();
+            gridPane.setPadding(new Insets(5));
+            gridPane.setHgap(10);
+            gridPane.setVgap(10);
+            gridPane.minHeight(30);
+            txtName.maxHeight(200);
+            gridPane.maxHeight(200);
 
-            GridPane.setHalignment (text, HPos.CENTER);
-            gridPane.add (text, 0, 0);
-            gridPane.setAlignment (Pos.CENTER_RIGHT);
+            GridPane.setHalignment(tempFlow, HPos.CENTER);
+            gridPane.add(tempFlow, 0, 0);
+            gridPane.setAlignment(Pos.CENTER_RIGHT);
 
-            root.getChildren ().add(gridPane);
-            vBox2.getChildren ().add(gridPane);
+            root.getChildren().add(gridPane);
+            vBox2.getChildren().add(gridPane);
 
         });
 
-
-        dataOutputStream.writeUTF (txtMassage.getText ());
-        dataOutputStream.flush ();
-        txtMassage.clear ();
+        dataOutputStream.writeUTF(txtMassage.getText());
+        dataOutputStream.flush();
+        txtMassage.clear();
 
     }
 
-
     public void emojiOnAction(MouseEvent mouseEvent) {
-
+        gifPAne.setVisible(false);
         imogiPane.setVisible(true);
 
     }
+
     public void hideEmoji(MouseEvent mouseEvent) {
         imogiPane.setVisible(false);
+        gifPAne.setVisible(false);
     }
 
     public void sunglass(MouseEvent mouseEvent) {
@@ -315,5 +301,220 @@ public class Client2Controller {
         String emoji = new String(Character.toChars(128150));
         txtMassage.setText(emoji);
         imogiPane.setVisible(false);
+    }
+
+    public void smileHeart2(MouseEvent mouseEvent) throws IOException {
+        File file = new File("D:\\Chat\\ChatApplication\\Client1\\src\\main\\resources\\view\\gif\\ezgif-2-1a931e9af3.gif");
+        if (file.exists()) {
+            String path = file.toURI().toString();
+            sendImage(path);
+        } else {
+            System.out.println("File does not exist.");
+        }
+    }
+
+    public void smile2(MouseEvent mouseEvent) throws IOException {
+        File file = new File("D:\\Chat\\ChatApplication\\Client1\\src\\main\\resources\\view\\gif\\ezgif-2-56c35d999.gif");
+        if (file.exists()) {
+            String path = file.toURI().toString();
+            sendImage(path);
+        } else {
+            System.out.println("File does not exist.");
+        }
+    }
+
+    public void sad2(MouseEvent mouseEvent) throws IOException {
+        File file = new File("D:\\Chat\\ChatApplication\\Client1\\src\\main\\resources\\view\\gif\\ezgif-2-1a931e9af3.gif");
+        if (file.exists()) {
+            String path = file.toURI().toString();
+            sendImage(path);
+        } else {
+            System.out.println("File does not exist.");
+        }
+    }
+
+    public void sunglass2(MouseEvent mouseEvent) throws IOException {
+        File file = new File("D:\\Chat\\ChatApplication\\Client1\\src\\main\\resources\\view\\gif\\ezgif-2-15e251dad3.gif");
+        if (file.exists()) {
+            String path = file.toURI().toString();
+            sendImage(path);
+        } else {
+            System.out.println("File does not exist.");
+        }
+    }
+
+    public void shok2(MouseEvent mouseEvent) throws IOException {
+        File file = new File("D:\\Chat\\ChatApplication\\Client1\\src\\main\\resources\\view\\gif\\ezgif-2-6ace4e5710.gif");
+        if (file.exists()) {
+            String path = file.toURI().toString();
+            sendImage(path);
+        } else {
+            System.out.println("File does not exist.");
+        }
+    }
+
+    public void angry2(MouseEvent mouseEvent) throws IOException {
+        File file = new File("D:\\Chat\\ChatApplication\\Client1\\src\\main\\resources\\view\\gif\\ezgif-2-44cce16f7f.gif");
+        if (file.exists()) {
+            String path = file.toURI().toString();
+            sendImage(path);
+        } else {
+            System.out.println("File does not exist.");
+        }
+    }
+
+    public void emostional2(MouseEvent mouseEvent) throws IOException {
+        File file = new File("D:\\Chat\\ChatApplication\\Client1\\src\\main\\resources\\view\\gif\\ezgif-2-56c35d9996.gif");
+        if (file.exists()) {
+            String path = file.toURI().toString();
+            sendImage(path);
+        } else {
+            System.out.println("File does not exist.");
+        }
+    }
+
+    public void verysad2(MouseEvent mouseEvent) throws IOException {
+        File file = new File("D:\\Chat\\ChatApplication\\Client1\\src\\main\\resources\\view\\gif\\ezgif-2-4e652a75f8.gif");
+        if (file.exists()) {
+            String path = file.toURI().toString();
+            sendImage(path);
+        } else {
+            System.out.println("File does not exist.");
+        }
+    }
+
+    public void heart2(MouseEvent mouseEvent) throws IOException {
+        File file = new File("D:\\Chat\\ChatApplication\\Client1\\src\\main\\resources\\view\\gif\\ezgif-2-2168a6832c.gif");
+        if (file.exists()) {
+            String path = file.toURI().toString();
+            sendImage(path);
+        } else {
+            System.out.println("File does not exist.");
+        }
+    }
+
+    public void laugh2(MouseEvent mouseEvent) throws IOException {
+        File file = new File("D:\\Chat\\ChatApplication\\Client1\\src\\main\\resources\\view\\gif\\ezgif-2-0472cf6031.gif");
+        if (file.exists()) {
+            String path = file.toURI().toString();
+            sendImage(path);
+        } else {
+            System.out.println("File does not exist.");
+        }
+    }
+
+    public void exited2(MouseEvent mouseEvent) throws IOException {
+        File file = new File("D:\\Chat\\ChatApplication\\Client1\\src\\main\\resources\\view\\gif\\ezgif-2-1739dcae0f.gif");
+        if (file.exists()) {
+            String path = file.toURI().toString();
+            sendImage(path);
+        } else {
+            System.out.println("File does not exist.");
+        }
+    }
+
+    public void gost2(MouseEvent mouseEvent) throws IOException {
+        File file = new File("D:\\Chat\\ChatApplication\\Client1\\src\\main\\resources\\view\\gif\\ezgif-2-fc05abb5fb.gif");
+        if (file.exists()) {
+            String path = file.toURI().toString();
+            sendImage(path);
+        } else {
+            System.out.println("File does not exist.");
+        }
+    }
+
+    public void kiss2(MouseEvent mouseEvent) throws IOException {
+        File file = new File("D:\\Chat\\ChatApplication\\Client1\\src\\main\\resources\\view\\gif\\ezgif-2-8750852c7e.gif");
+        if (file.exists()) {
+            String path = file.toURI().toString();
+            sendImage(path);
+        } else {
+            System.out.println("File does not exist.");
+        }
+    }
+
+    public void silly2(MouseEvent mouseEvent) throws IOException {
+        File file = new File("D:\\Chat\\ChatApplication\\Client1\\src\\main\\resources\\view\\gif\\ezgif-2-dfc46071d0.gif");
+        if (file.exists()) {
+            String path = file.toURI().toString();
+            sendImage(path);
+        } else {
+            System.out.println("File does not exist.");
+        }
+    }
+    public void gifemotion2(MouseEvent mouseEvent) throws IOException {
+        File file = new File("D:\\Chat\\ChatApplication\\Client1\\src\\main\\resources\\view\\gif\\ezgif-2-80c8b54cd1.gif");
+        if (file.exists()) {
+            String path = file.toURI().toString();
+            sendImage(path);
+        } else {
+            System.out.println("File does not exist.");
+        }
+    }
+    public void gifOnAction(MouseEvent mouseEvent) {
+        imogiPane.setVisible(false);
+        gifPAne.setVisible(true);
+
+    }
+
+    public void sendImage(String path) throws IOException {
+
+        if (path != null) {
+            Image image1 = new Image(path, 100, 300, true, true);
+            ImageView image = new ImageView(image1);
+
+            final Group root = new Group();
+            final GridPane gridpane = new GridPane();
+
+            gridpane.setPadding(new Insets(5));
+            gridpane.setHgap(10);
+            gridpane.setVgap(10);
+            gridpane.minHeight(30);
+            gridpane.maxHeight(200);
+            GridPane.setHalignment(image, HPos.CENTER);
+            gridpane.add(image, 0, 0);
+            gridpane.setAlignment(Pos.CENTER_RIGHT);
+
+            root.getChildren().add(gridpane);
+            vBox2.getChildren().add(gridpane);
+            dataOutputStream.writeUTF("img`" + path);
+            dataOutputStream.flush();
+
+        }
+    }
+
+    public void lightOnAction(MouseEvent mouseEvent) {
+        String imagePath = "D:\\Chat\\ChatApplication\\Client1\\src\\main\\resources\\view\\image\\background.jpg";
+        changeImageFromPath(theamChange, imagePath);
+        darkimagePane.setVisible(true);
+        darkImage.setVisible(true);
+        lightImageview.setVisible(false);
+    }
+
+    public void darkOnAction(MouseEvent mouseEvent) {
+        String imagePath = "D:\\Chat\\ChatApplication\\Client1\\src\\main\\resources\\view\\image\\dark.png";
+        changeImageFromPath(theamChange, imagePath);
+        darkimagePane.setVisible(false);
+        darkImage.setVisible(false);
+        lightImageview.setVisible(true);
+    }
+    public void changeImageFromPath(ImageView imageView, String imagePath) {
+        try {
+            Image image = new Image(new File(imagePath).toURI().toString());
+            imageView.setImage(image);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+
+        }
+    }
+
+    public void keyTyping(KeyEvent keyEvent) {
+        String text = txtMassage.getText();
+        if (!text.isBlank()) {
+            sendBtn.setVisible(true);
+
+        }else{
+            sendBtn.setVisible(false);
+        }
     }
 }
