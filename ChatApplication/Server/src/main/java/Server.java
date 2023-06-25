@@ -7,7 +7,7 @@ import java.util.List;
 public class Server {
 
     final  int port=8000;
-    private static List<handler> clients = new ArrayList<> ();
+    private static List<Handler> clients = new ArrayList<> ();
 
 
     public static void main(String[] args) {
@@ -21,7 +21,7 @@ public class Server {
                 String clientName = dataInputStream.readUTF();
                 System.out.println("Client connected: " + clientName);
 
-                handler clientHandler = new handler(socket,clientName);
+                Handler clientHandler = new Handler(socket,clientName);
                 clients.add(clientHandler);
                 clientHandler.start ();
             }
@@ -29,11 +29,14 @@ public class Server {
         } catch (Exception e) {
             e.printStackTrace ();
 
+
+
+
         }
     }
-    public static void broadcastMessage(String message,String name) {
-        for (handler client : clients) {
-               if(!client.name.equals (name)){
+    public static void broadcastMessage(String message,Socket socket) {
+        for (Handler client : clients) {
+               if(client.clientSocket.getPort() != socket.getPort()){
                    client.sendMessage (message);
                }
             }

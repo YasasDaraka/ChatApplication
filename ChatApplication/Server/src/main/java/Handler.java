@@ -1,12 +1,12 @@
 import java.io.*;
 import java.net.Socket;
 
-public class handler extends Thread{
-    private Socket clientSocket;
+public class Handler extends Thread{
+    Socket clientSocket;
     DataOutputStream dataOutputStream;
     String name;
 
-    public handler(Socket socket, String name) {
+    public Handler(Socket socket, String name) {
         this.clientSocket = socket;
         this.name=name;
     }
@@ -27,11 +27,11 @@ public class handler extends Thread{
                 }
                 if (message.startsWith ("img")){
 
-                    Server.broadcastMessage(message,this.name);
+                    Server.broadcastMessage(message,this.clientSocket);
 
                 }else {
                     String received=this.name+" : "+message;
-                    Server.broadcastMessage(received,this.name);
+                    Server.broadcastMessage(received,this.clientSocket);
                 }
 
 
