@@ -6,7 +6,6 @@ import java.util.List;
 
 public class Server {
 
-    final  int port=8000;
     private static List<Handler> clients = new ArrayList<> ();
 
 

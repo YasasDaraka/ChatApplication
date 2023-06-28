@@ -1,23 +1,19 @@
 package controller;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
@@ -79,11 +75,17 @@ public class Client1Controller {
 
                 while (socket.isConnected()) {
                     massage = dataInputStream.readUTF();
+                    String[] tokens = massage.split(" ");
+                    String cmd = tokens[0];
 
-                    if (massage.startsWith("img")) {
+                    String[] msgToAr = massage.split(" ");
+                    String st = "";
+                    for (int i = 0; i < msgToAr.length - 1; i++) {
+                        st += msgToAr[i + 1] + " ";
+                    }
 
-                        setImage(massage);
-
+                    if (st.startsWith("img")) {
+                        setImage(st,cmd);
                     } else {
                         setMessage(massage);
                     }
@@ -96,24 +98,49 @@ public class Client1Controller {
     public void exist(MouseEvent mouseEvent) throws IOException {
         System.exit(0);
     }
-    private void setImage(String massage) {
+    private void setImage(String mas,String name) {
         Platform.runLater(() -> {
-
-            String[] paths = massage.split("`");
+            String mass = mas.substring(3, mas.length() - 1);
+            String[] paths = mass.split("`");
             Image image1 = new Image(paths[1], 100, 300, true, true);
             ImageView image = new ImageView(image1);
+
+            TextFlow tempFlow = new TextFlow();
+            Text txtName = new Text();
+            tempFlow.setStyle("-fx-background-radius: 10;" +
+                    "-fx-background-color: rgba(113, 144, 224, 0.85);" +
+                    "-fx-font-family: \"Arial Rounded MT Bold\";" +
+                    "-fx-font-size: 15px; -fx-padding: 8px; -fx-start-margin: 200px;" +
+                    "-fx-text-fill:  #ffffff;");
+
+            txtName.setStyle("-fx-fill: #fff;");
+            txtName.setText(name+"  : ");
+            tempFlow.getChildren().add(txtName);
+            tempFlow.setPadding(new Insets(3, 10, 3, 10));
+
             final Group root = new Group();
+            final GridPane gridpane2 = new GridPane();
+            gridpane2.setPadding(new Insets(5));
+            gridpane2.setHgap(10);
+            gridpane2.setVgap(10);
+            gridpane2.minHeight(30);
+            gridpane2.maxHeight(200);
+            GridPane.setHalignment(tempFlow, HPos.LEFT);
+            gridpane2.add(tempFlow, 0, 0);
+            gridpane2.setAlignment(Pos.CENTER_LEFT);
+
+            root.getChildren().add(gridpane2);
+            vBox2.getChildren().add(gridpane2);
+
             final GridPane gridpane = new GridPane();
             gridpane.setPadding(new Insets(5));
             gridpane.setHgap(10);
             gridpane.setVgap(10);
             gridpane.minHeight(30);
             gridpane.maxHeight(200);
-            GridPane.setHalignment(image, HPos.CENTER);
-            gridpane.add(image, 0, 0);
+            GridPane.setHalignment(image, HPos.RIGHT);
+            gridpane.add(image, 1, 0);
             gridpane.setAlignment(Pos.CENTER_LEFT);
-
-            root.getChildren().add(gridpane);
 
             vBox2.getChildren().add(gridpane);
 
@@ -155,6 +182,8 @@ public class Client1Controller {
 
     }
     public void onActionImageSend(MouseEvent mouseEvent) throws IOException {
+        imogiPane.setVisible(false);
+        gifPAne.setVisible(false);
         FileChooser chooser = new FileChooser();
         File file = chooser.showOpenDialog(new Stage());
         if (file != null) {
@@ -479,7 +508,7 @@ public class Client1Controller {
 
             root.getChildren().add(gridpane);
             vBox2.getChildren().add(gridpane);
-            dataOutputStream.writeUTF("img`" + path);
+            dataOutputStream.writeUTF(lblName.getText() + " " +"img`" + path);
             dataOutputStream.flush();
 
         }

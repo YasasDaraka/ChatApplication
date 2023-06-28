@@ -1,3 +1,5 @@
+import javafx.scene.text.Text;
+
 import java.io.*;
 import java.net.Socket;
 
@@ -16,8 +18,6 @@ public class Handler extends Thread{
             dataOutputStream=new DataOutputStream(clientSocket.getOutputStream());
             DataInputStream dataInputStream = new DataInputStream(clientSocket.getInputStream());
 
-            BufferedReader bufferedReader=new BufferedReader(new InputStreamReader (System.in));
-
             while (true){
                 String message = dataInputStream.readUTF();
 
@@ -25,7 +25,17 @@ public class Handler extends Thread{
                     System.out.println("Chat Closed");
                     break;
                 }
-                if (message.startsWith ("img")){
+                String[] tokens = message.split(" ");
+                String cmd = tokens[0];
+                System.out.println(cmd);
+
+                String[] msgToAr = message.split(" ");
+                String st = "";
+                for (int i = 0; i < msgToAr.length - 1; i++) {
+                    st += msgToAr[i + 1] + " ";
+                }
+
+                if (st.startsWith("img")) {
 
                     Server.broadcastMessage(message,this.clientSocket);
 
